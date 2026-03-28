@@ -1,0 +1,443 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VELLUNE DESIGN SYSTEM — CSS FOUNDATION
+   Luxury Chocolate Maison · Elastic. Luminous. Eternal.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds — warm espresso-brown darks */
+  --c-void:       #080507;
+  --c-noir:       #0F0A09;
+  --c-espresso:   #140E0B;
+  --c-velvet:     #1C1410;
+  --c-mocha:      #261A14;
+  --c-sienna:     #322018;
+
+  /* Gold spectrum — warm amber-honey */
+  --c-gold-deep:  #8A6018;
+  --c-gold:       #C49030;
+  --c-gold-warm:  #D4A840;
+  --c-gold-pale:  #E8CE80;
+  --c-gold-cream: #F0E4C0;
+  --c-gold-muted: #7A6038;
+  --c-gold-ghost: rgba(196, 144, 48, 0.12);
+
+  /* Moon */
+  --c-moon:       #D4A840;
+  --c-moon-glow:  rgba(212, 168, 64, 0.18);
+
+  /* Text */
+  --c-ivory:      #F0E8D8;
+  --c-parchment:  #C8B898;
+  --c-dusk:       #887050;
+  --c-ember:      #4A3020;
+
+  /* Motion */
+  --ease-luxury:  cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:     cubic-bezier(0.0, 0, 0.2, 1);
+
+  /* Spacing rhythm */
+  --section-y:    clamp(96px, 12vw, 160px);
+  --content-x:    clamp(24px, 5.5vw, 80px);
+}
+
+/* ── Base Reset ────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--c-noir);
+  color: var(--c-ivory);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Film Grain Texture ────────────────────────────────────────────────────── */
+/* Simulates the velvet/suede quality of high-end print materials */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(196, 144, 48, 0.22);
+  color: var(--c-ivory);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar              { width: 3px; }
+::-webkit-scrollbar-track        { background: var(--c-void); }
+::-webkit-scrollbar-thumb        { background: rgba(196,144,48,0.28); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: rgba(196,144,48,0.48); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Display — Cormorant Garant for all editorial headings */
+.font-display {
+  font-family: 'Cormorant Garant', Georgia, serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Display italic — for pull quotes, taglines, emotional moments */
+.font-display-italic {
+  font-family: 'Cormorant Garant', Georgia, serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Small caps — for labels, navigation, section markers */
+.font-label {
+  font-family: 'Cormorant SC', Georgia, serif;
+  font-weight: 400;
+}
+
+/* Body — Montserrat, minimal, modern */
+.font-body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+/* Micro label — the smallest text unit in the system */
+.text-micro {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Section label — appears above every major headline */
+.section-label {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--c-gold-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GOLD SYSTEM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Gradient text — for the wordmark and select headlines */
+.text-gold-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--c-gold-deep) 0%,
+    var(--c-gold) 28%,
+    var(--c-gold-pale) 50%,
+    var(--c-gold-warm) 70%,
+    var(--c-gold-deep) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated shimmer — for the wordmark on hover */
+.text-gold-shimmer-animated {
+  background: linear-gradient(
+    100deg,
+    var(--c-gold-deep) 0%,
+    var(--c-gold) 28%,
+    var(--c-gold-pale) 50%,
+    var(--c-gold-warm) 70%,
+    var(--c-gold-deep) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+@keyframes goldShimmer {
+  from { background-position: 200% center; }
+  to   { background-position: 0% center; }
+}
+
+/* ── Gold Rule (horizontal divider) ──────────────────────────────────────── */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196,144,48,0.15) 20%,
+    rgba(196,144,48,0.5) 50%,
+    rgba(196,144,48,0.15) 80%,
+    transparent 100%
+  );
+}
+
+/* Short version — left-aligned sections */
+.gold-rule-short {
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(90deg, var(--c-gold), transparent);
+}
+
+/* ── Gold subtle glow — for text on dark ─────────────────────────────────── */
+.text-glow-gold {
+  text-shadow:
+    0 0 60px rgba(196,144,48,0.25),
+    0 0 120px rgba(196,144,48,0.10);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKGROUNDS & SURFACES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Atmospheric velvet background — matches brand photography depth */
+.bg-atmospheric {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(100,55,15,0.14) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(60,20,10,0.18) 0%, transparent 65%),
+    var(--c-noir);
+}
+
+/* Card surface with ambient gold border */
+.surface-card {
+  background: var(--c-velvet);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.45), 0 0 0 1px rgba(196,144,48,0.04);
+  transition: box-shadow 0.5s var(--ease-luxury), background-color 0.5s var(--ease-luxury);
+}
+
+.surface-card:hover {
+  background: var(--c-mocha);
+  box-shadow: 0 12px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(196,144,48,0.14);
+}
+
+/* Glass panel — for floating elements on imagery */
+.surface-glass {
+  background: rgba(15, 10, 9, 0.78);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(196,144,48,0.12);
+}
+
+/* Velvet grid gap — replaces conventional grid gutters */
+.grid-gold-gap {
+  gap: 1px;
+  background: rgba(196,144,48,0.06);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INTERACTIVE ELEMENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Primary Luxury Button ────────────────────────────────────────────────── */
+.btn-luxury {
+  display: inline-block;
+  font-family: 'Cormorant SC', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ivory);
+  border: 1px solid rgba(196,144,48,0.35);
+  padding: 15px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.45s var(--ease-luxury), border-color 0.45s var(--ease-luxury);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(196,144,48,0.0) 0%,
+    rgba(196,144,48,0.10) 50%,
+    rgba(196,144,48,0.0) 100%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.55s var(--ease-luxury);
+}
+
+.btn-luxury:hover {
+  color: var(--c-gold-cream);
+  border-color: rgba(196,144,48,0.7);
+}
+
+.btn-luxury:hover::before {
+  transform: translateX(110%);
+}
+
+/* ── Ghost Button (secondary action) ─────────────────────────────────────── */
+.btn-ghost {
+  display: inline-block;
+  font-family: 'Cormorant SC', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-gold-muted);
+  border: 1px solid rgba(196,144,48,0.18);
+  padding: 15px 44px;
+  transition: color 0.35s var(--ease-luxury), border-color 0.35s var(--ease-luxury);
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  color: var(--c-gold);
+  border-color: rgba(196,144,48,0.45);
+}
+
+/* ── Link underline animation ─────────────────────────────────────────────── */
+.link-line {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.link-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-gold);
+  transition: width 0.38s var(--ease-luxury);
+}
+
+.link-line:hover::after { width: 100%; }
+
+/* ── Nav link (letter-spaced, uppercase, thin) ───────────────────────────── */
+.nav-link {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-gold-muted);
+  transition: color 0.3s var(--ease-luxury);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-gold);
+  transition: width 0.35s var(--ease-luxury);
+}
+
+.nav-link:hover { color: var(--c-gold); }
+.nav-link:hover::after { width: 100%; }
+
+/* ── Tasting note pill ────────────────────────────────────────────────────── */
+.note-pill {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(240,232,216,0.55);
+  border: 1px solid rgba(196,144,48,0.12);
+  padding: 6px 14px;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.note-pill:hover {
+  border-color: rgba(196,144,48,0.35);
+  color: rgba(240,232,216,0.80);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Page entry — applied to every page's <main> */
+.page-enter {
+  animation: pageEnter 1.0s var(--ease-luxury) both;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Moon pulse glow — applied to the crescent SVG */
+.moon-breathe {
+  animation: moonBreathe 4s ease-in-out infinite;
+}
+
+@keyframes moonBreathe {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(212,168,64,0.35)) drop-shadow(0 0 20px rgba(212,168,64,0.15)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(212,168,64,0.55)) drop-shadow(0 0 36px rgba(212,168,64,0.22)); }
+}
+
+/* Scroll indicator */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(0) translateY(0); }
+  50%       { opacity: 0.8; transform: scaleY(1) translateY(8px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Maison container — max-width with editorial padding */
+.container-maison {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--content-x);
+  padding-right: var(--content-x);
+}
+
+/* Section vertical rhythm */
+.section-y {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+/* ── Collection card ribbon — left border accent ─────────────────────────── */
+.ribbon-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  transition: width 0.4s var(--ease-luxury);
+}
+
+.group:hover .ribbon-left { width: 4px; }
+
+/* ── Brand Marquee ticker ─────────────────────────────────────────────────── */
+/* Scrolls the duplicate word-list exactly -50% so the loop is seamless.     */
+@keyframes marqueeTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
